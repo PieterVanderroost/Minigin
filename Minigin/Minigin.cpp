@@ -87,7 +87,7 @@ void dae::Minigin::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
-
+	
 	{
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
@@ -95,11 +95,17 @@ void dae::Minigin::Run()
 
 		// todo: this update loop could use some work.
 		bool doContinue = true;
+		auto lastTime = std::chrono::high_resolution_clock::now();
 		while (doContinue)
 		{
+			auto currentTime = std::chrono::high_resolution_clock::now();
+			float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+
 			doContinue = input.ProcessInput();
-			sceneManager.Update();
+			sceneManager.Update(deltaTime);
 			renderer.Render();
+
+			lastTime = currentTime;
 		}
 	}
 
