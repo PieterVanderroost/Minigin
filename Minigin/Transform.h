@@ -1,7 +1,7 @@
 #pragma once
 namespace dae
 {
-	class Transform final
+	class Transform
 	{
 	public:
 		const glm::vec3& GetPosition() const { return m_Position; }

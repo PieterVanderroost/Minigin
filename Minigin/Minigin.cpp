@@ -5,9 +5,11 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include "TextObject.h"
+#include "TextComponent.h"
+#include "RenderComponent.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "TransformComponent.h"
 
 using namespace std;
 
@@ -56,19 +58,25 @@ void dae::Minigin::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	auto go = std::make_shared<GameObject>();
-	go->SetTexture("background.jpg");
-	scene.Add(go);
+	//Background
+	auto goBackground = std::make_shared<GameObject>();
+	goBackground->AddComponent(std::make_shared<RenderComponent>());
+	goBackground->GetComponent<RenderComponent>()->SetTexture("background.jpg");
+	scene.Add(goBackground);
 
-	go = std::make_shared<GameObject>();
-	go->SetTexture("logo.png");
-	go->SetPosition(216, 180);
-	scene.Add(go);
+	//DAE Logo
+	auto goLogo = std::make_shared<GameObject>();
+	goLogo->AddComponent(std::make_shared<RenderComponent>());
+	goLogo->GetComponent<RenderComponent>()->SetTexture("logo.png");
+	goLogo->GetComponent<TransformComponent>()->SetPosition(216, 180);
+	scene.Add(goLogo);
 
+	//Assignment text
+	auto goText = std::make_shared<GameObject>();
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
-	to->SetPosition(80, 20);
-	scene.Add(to);
+	goText->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
+	goText->GetComponent<TransformComponent>()->SetPosition(80, 20);
+	scene.Add(goText);
 }
 
 void dae::Minigin::Cleanup()
