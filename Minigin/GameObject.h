@@ -1,14 +1,11 @@
 #pragma once
 #include "Transform.h"
-#include "SceneObject.h"
-
 
 namespace dae
 {
 	class BaseComponent;
 
-	// todo: this should become final.
-	class GameObject: public SceneObject
+	class GameObject final
 	{
 	public:
 		GameObject();
@@ -45,7 +42,5 @@ namespace dae
 		
 	private:
 		std::vector<std::shared_ptr<BaseComponent>> m_pComponents;
-		// todo: mmm, every gameobject has a texture? Is that correct?
-		//std::shared_ptr<Texture2D> m_Texture{};
 	};
 }

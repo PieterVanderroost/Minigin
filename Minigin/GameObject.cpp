@@ -29,13 +29,3 @@ void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 	component->SetGameObject(this);
 	m_pComponents.push_back(component);
 }
-
-//void dae::GameObject::SetTexture(const std::string& filename)
-//{
-//	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
-//}
-
-//void dae::GameObject::SetPosition(float x, float y)
-//{
-//	m_Transform.SetPosition(x, y, 0.0f);
-//}
