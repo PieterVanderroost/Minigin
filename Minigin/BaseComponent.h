@@ -16,7 +16,7 @@ namespace dae
 		BaseComponent& operator=(BaseComponent&& other) = delete;
 
 		virtual void Update(float elapsedSec) = 0;
-		virtual void Render() const = 0;
+		virtual void Render() const {};
 
 		GameObject* GetGameObject() const { return m_pGameObject; }
 		void SetGameObject(GameObject* gameObject) { m_pGameObject = gameObject; }

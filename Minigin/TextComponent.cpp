@@ -6,11 +6,12 @@
 #include "Texture2D.h"
 #include "TransformComponent.h"
 
-dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> pFont)
-	:m_NeedsUpdate(true),
-	m_Text(text),
-	m_pFont(pFont),
-	m_pTextTexture{ nullptr }
+dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> pFont, SDL_Color color)
+	:m_NeedsUpdate{ true },
+	m_Text{ text },
+	m_pFont{ pFont },
+	m_pTextTexture{ nullptr },
+	m_Color{ color }
 {
 }
 
@@ -18,7 +19,7 @@ void dae::TextComponent::Update(float)
 {
 	if (m_NeedsUpdate)
 	{
-		const SDL_Color color = { 255,255,255 }; // only white text is supported now
+		const SDL_Color color = m_Color; // only white text is supported now
 		const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), color);
 		if (surf == nullptr)
 		{

@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "TransformComponent.h"
+#include "FPSComponent.h"
 
 using namespace std;
 
@@ -77,6 +78,14 @@ void dae::Minigin::LoadGame() const
 	goText->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
 	goText->GetComponent<TransformComponent>()->SetPosition(80, 20);
 	scene.Add(goText);
+
+	//FPS Counter
+	auto goFps = std::make_shared<GameObject>();
+	goFps->GetComponent<TransformComponent>()->SetPosition(0, 0);
+	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 18);
+	goFps->AddComponent(std::make_shared<TextComponent>("FPS", fpsFont, SDL_Color{ 255,255,0 }));
+	goFps->AddComponent(std::make_shared<FPSComponent>());
+	scene.Add(goFps);
 }
 
 void dae::Minigin::Cleanup()
