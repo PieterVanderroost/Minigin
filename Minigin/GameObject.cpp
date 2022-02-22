@@ -10,11 +10,11 @@ dae::GameObject::GameObject()
 
 void dae::GameObject::Update(float elapsedSec)
 {
-	for (auto component : m_pComponents)
+	for (auto& component : m_pComponents)
 	{
 		component->Update(elapsedSec);
 	}
-	for (auto child : m_pChildren)
+	for (auto& child : m_pChildren)
 	{
 		child->Update(elapsedSec);
 	}
@@ -22,7 +22,7 @@ void dae::GameObject::Update(float elapsedSec)
 
 void dae::GameObject::Render() const
 {
-	for (auto component : m_pComponents)
+	for (auto& component : m_pComponents)
 	{
 		component->Render();
 	}

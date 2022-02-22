@@ -22,7 +22,7 @@ namespace dae
 
 		template <typename T> std::shared_ptr<T> GetComponent() const
 		{
-			for (auto pComp : m_pComponents)
+			for (auto& pComp : m_pComponents)
 			{
 				if (typeid(*pComp) == typeid(T))
 					return std::dynamic_pointer_cast<T>(pComp);
