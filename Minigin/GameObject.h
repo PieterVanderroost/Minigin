@@ -18,7 +18,7 @@ namespace dae
 		void Update(float elapsedSec);
 		void Render() const;
 
-		void AddComponent(std::shared_ptr<BaseComponent> component);
+		void AddComponent(const std::shared_ptr<BaseComponent>& component);
 
 		template <typename T> std::shared_ptr<T> GetComponent() const
 		{
@@ -30,17 +30,17 @@ namespace dae
 			return nullptr;
 		}
 
-		//void SetParent(GameObject* parent);
-		//GameObject* GetParent() const;
-		////void SetTexture(const std::string& filename);
-		////void SetPosition(float x, float y);
+		void SetParent(const std::shared_ptr<GameObject>& parent);
+		std::shared_ptr<GameObject> GetParent() const;
 
-		//size_t GetChildCount() const;
-		//GameObject* GetChildAt(int index) const;
-		//void RemoveChild(int index);
-		//void AddChild(GameObject* go);
+		size_t GetChildCount() const;
+		std::shared_ptr<GameObject> GetChildAt(int index) const;
+		void RemoveChild(int index);
+		void AddChild(const std::shared_ptr<GameObject>& go);
 		
 	private:
 		std::vector<std::shared_ptr<BaseComponent>> m_pComponents;
+		std::shared_ptr<GameObject> m_pParent = nullptr;
+		std::vector<std::shared_ptr<GameObject>> m_pChildren;
 	};
 }

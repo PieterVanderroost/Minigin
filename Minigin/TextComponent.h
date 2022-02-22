@@ -9,7 +9,7 @@ namespace dae
 	class TextComponent final : public BaseComponent
 	{
 	public:
-		TextComponent(const std::string& text, std::shared_ptr<Font> pFont,SDL_Color color = {255,255,255});
+		TextComponent(const std::string& text, const std::shared_ptr<Font>& pFont,SDL_Color color = {255,255,255});
 		virtual ~TextComponent() = default;
 		TextComponent(const TextComponent& other) = delete;
 		TextComponent(TextComponent&& other) = delete;
@@ -21,7 +21,6 @@ namespace dae
 
 		void SetText(const std::string& text);
 		void SetPosition(float x, float y);
-		void SetSize();
 
 	private:
 		bool m_NeedsUpdate;
